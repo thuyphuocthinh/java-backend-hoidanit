@@ -14,3 +14,12 @@ public class HelloController {
         return "Thuy Phuoc Thinh";
     }
 }
+
+/*
+ * Spring MVC
+ * Spring Hibernate/JPA
+ * Sprint security
+ * Spring Boot
+ * ....
+ * Hoc Spring => hoc he sinh thai Spring de viet web
+ */
