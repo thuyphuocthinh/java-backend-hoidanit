@@ -17,8 +17,50 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
   </head>
   <body>
-    Hello from jsp
-    <h4>${TPT}</h4>
-    <button class="btn btn-success demo-btn">Click</button>
+    <div class="home" style="max-width: 1200px; margin: 50px auto; width: 95%">
+      <div class="home-top d-flex align-items-center justify-content-between">
+        <h4>Table User</h4>
+        <a class="btn btn-primary" href="/admin/create">+ Add new user</a>
+      </div>
+      <div class="home-body mt-4">
+        <table
+          class="table table-striped table-hover"
+          style="vertical-align: middle; text-align: center"
+        >
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>FullName</th>
+              <th>Email</th>
+              <th>Phone</th>
+              <th>Addess</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <c:forEach var="user" items="${listUsers}">
+              <tr>
+                <td>${user.id}</td>
+                <td>${user.fullName}</td>
+                <td>${user.email}</td>
+                <td>${user.phone}</td>
+                <td>${user.address}</td>
+                <td>
+                  <a href="/user/view/${user.id}" class="btn btn-success"
+                    >View</a
+                  >
+                  <a href="/user/edit/${user.id}" class="btn btn-warning"
+                    >Edit</a
+                  >
+                  <a href="/user/delete/${user.id}" class="btn btn-danger"
+                    >Delete</a
+                  >
+                </td>
+              </tr>
+            </c:forEach>
+          </tbody>
+        </table>
+      </div>
+    </div>
   </body>
 </html>
