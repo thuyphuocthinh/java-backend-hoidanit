@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -24,7 +25,6 @@ public class UserController {
         List<User> listUsers = this.userService.getAllUsers();
         model.addAttribute("TPT", "Thuy Phuoc Thinh");
         model.addAttribute("listUsers", listUsers);
-        System.out.println("listUsers: " + listUsers);
         return "hello";
     }
 
@@ -41,8 +41,41 @@ public class UserController {
 
     @RequestMapping(value = "/admin/user/post", method = RequestMethod.POST)
     public String postCreateUser(Model model, @ModelAttribute("newUser") User newUser) {
-        System.err.println(newUser.toString());
         this.userService.handleSaveUser(newUser);
         return "redirect:/";
+    }
+
+    @RequestMapping(value = "/user/view/{id}")
+    public String getUserById(Model model, @PathVariable long id) {
+        User user = this.userService.getUserById(id);
+        model.addAttribute("userName", user.getFullName());
+        return "/admin/user/detail";
+    }
+
+    @RequestMapping(value = "/user/delete/{id}")
+    public String deleteUserById(Model model, @PathVariable long id) {
+        this.userService.deleteUserByid(id);
+        return "redirect:/";
+    }
+
+    @RequestMapping(value = "/user/edit/{id}")
+    public String getEditUserPage(Model model, @PathVariable long id) {
+        User user = this.userService.getUserById(id);
+        System.out.println("user " + user);
+        model.addAttribute("user", user);
+        return "/admin/user/edit";
+    }
+
+    @RequestMapping(value = "/admin/user/edit", method = RequestMethod.POST)
+    public String editUser(Model model, @ModelAttribute("user") User user) {
+        User currentUser = this.userService.getUserById(user.getId());
+        if (currentUser != null) {
+            currentUser.setAddress(user.getAddress());
+            currentUser.setFullName(user.getFullName());
+            currentUser.setPhone(user.getPhone());
+            this.userService.handleSaveUser(currentUser);
+            return "redirect:/";
+        }
+        return "redirect:/error";
     }
 }

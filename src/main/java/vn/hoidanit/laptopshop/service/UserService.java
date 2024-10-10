@@ -10,9 +10,11 @@ import vn.hoidanit.laptopshop.repository.UserRepository;
 @Service
 public class UserService {
     private final UserRepository userRepository;
+
     public UserService(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
+
     public String handleHello() {
         return "Hello from service";
     }
@@ -27,5 +29,13 @@ public class UserService {
 
     public User getUserByEmail(String email) {
         return this.userRepository.findByEmail(email);
+    }
+
+    public User getUserById(long id) {
+        return this.userRepository.findById(id);
+    }
+
+    public void deleteUserByid(long id) {
+        this.userRepository.deleteById(id);
     }
 }
