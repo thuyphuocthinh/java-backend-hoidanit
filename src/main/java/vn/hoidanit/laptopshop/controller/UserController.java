@@ -2,63 +2,76 @@ package vn.hoidanit.laptopshop.controller;
 
 import java.util.List;
 
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import vn.hoidanit.laptopshop.domain.User;
+import vn.hoidanit.laptopshop.service.UploadService;
 import vn.hoidanit.laptopshop.service.UserService;
 
 @Controller
 public class UserController {
     private final UserService userService;
+    private final UploadService uploadService;
+    private final PasswordEncoder passwordEncoder;
 
-    public UserController(UserService userService) {
+    public UserController(UserService userService, UploadService uploadService,
+    PasswordEncoder passwordEncoder) {
         this.userService = userService;
+        this.uploadService = uploadService;
+        this.passwordEncoder = passwordEncoder;
     }
 
-    @RequestMapping("/")
+    @RequestMapping("/admin/user")
     public String getHomePage(Model model) {
         List<User> listUsers = this.userService.getAllUsers();
         model.addAttribute("TPT", "Thuy Phuoc Thinh");
         model.addAttribute("listUsers", listUsers);
-        return "hello";
+        return "/admin/user/index";
     }
 
-    @RequestMapping("/test")
-    public String getTest() {
-        return "test";
-    }
-
-    @RequestMapping("/admin/create")
+    @GetMapping("/admin/user/create")
     public String getCreatePage(Model model) {
         model.addAttribute("newUser", new User());
         return "/admin/user/create";
     }
 
-    @RequestMapping(value = "/admin/user/post", method = RequestMethod.POST)
-    public String postCreateUser(Model model, @ModelAttribute("newUser") User newUser) {
+    @PostMapping(value = "/admin/user/post")
+    public String postCreateUser(Model model,
+            @ModelAttribute("newUser") User newUser,
+            @RequestParam("avatarFile") MultipartFile file) {
+        String avatar = uploadService.handleSaveFileUpload(file, "avatar");
+        String hashPassword = this.passwordEncoder.encode(newUser.getPassword());
+        // auto map => role => role_id in database
+        newUser.setRole(this.userService.getRoleByName(newUser.getRole().getName()));
+        newUser.setAvatar(avatar);
+        newUser.setPassword(hashPassword);
         this.userService.handleSaveUser(newUser);
-        return "redirect:/";
+        return "redirect:/admin/user";
     }
 
-    @RequestMapping(value = "/user/view/{id}")
+    @GetMapping(value = "/admin/user/view/{id}")
     public String getUserById(Model model, @PathVariable long id) {
         User user = this.userService.getUserById(id);
         model.addAttribute("userName", user.getFullName());
         return "/admin/user/detail";
     }
 
-    @RequestMapping(value = "/user/delete/{id}")
+    @GetMapping(value = "/admin/user/delete/{id}")
     public String deleteUserById(Model model, @PathVariable long id) {
         this.userService.deleteUserByid(id);
         return "redirect:/";
     }
 
-    @RequestMapping(value = "/user/edit/{id}")
+    @GetMapping(value = "/admin/user/edit/{id}")
     public String getEditUserPage(Model model, @PathVariable long id) {
         User user = this.userService.getUserById(id);
         System.out.println("user " + user);
@@ -66,7 +79,7 @@ public class UserController {
         return "/admin/user/edit";
     }
 
-    @RequestMapping(value = "/admin/user/edit", method = RequestMethod.POST)
+    @PostMapping(value = "/admin/user/edit")
     public String editUser(Model model, @ModelAttribute("user") User user) {
         User currentUser = this.userService.getUserById(user.getId());
         if (currentUser != null) {
