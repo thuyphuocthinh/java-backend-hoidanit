@@ -25,7 +25,7 @@ uri="http://java.sun.com/jsp/jstl/core"%>
           <div
             class="home-top d-flex align-items-center justify-content-between"
           >
-            <h4>Table User</h4>
+            <h4>Table Products</h4>
             <a class="btn btn-primary" href="/admin/product/create"
               >+ Add new product</a
             >

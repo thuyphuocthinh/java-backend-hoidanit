@@ -8,6 +8,9 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 
 @Entity
 @Table(name="products")
@@ -16,14 +19,35 @@ public class Product {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
+    @NotNull
+    @Size(min = 2, message = "Product name must be equal or greater than 2")
     private String name;
+
+    @NotNull(message = "Product price cannot be empty")
+    @Min(value = 0, message = "Price must be equal or greater than 0")
     private double price;
+
+    @NotNull(message = "Product image cannot be empty")
     private String image;
+
+    @NotNull(message = "Product detail description cannot be empty")
+    @Size(min = 30, message = "Product detail description must be equal or greater than 30")
     private String detailDesc;
+
+    @NotNull(message = "Product short description cannot be empty")
+    @Size(min = 10, message = "Product short description must be equal or greater than 10")
     private String shortDesc;
+
+    @NotNull(message = "Product price cannot be empty")
+    @Min(value = 0, message = "Price must be equal or greater than 0")
     private long quantity;
+
     private long sold;
+
+    @NotNull(message = "Product factory cannot be empty")
     private String factory;
+
+    @NotNull(message = "Product target cannot be empty")
     private String target;
 
     // One product => Many order_detail

@@ -21,6 +21,7 @@ public class UploadService {
     public String handleSaveFileUpload(MultipartFile file, String targetFolder) {
         String finalName = "";
         try {
+            if(file.isEmpty()) return "";
             byte[] bytes = file.getBytes();
             // get root path to webapp => webapp/resources/images
             String rootPath = this.servletContext.getRealPath("/resources/images");

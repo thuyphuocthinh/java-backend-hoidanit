@@ -10,6 +10,9 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 
 @Entity
 @Table(name = "users")
@@ -18,20 +21,35 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
+    @NotNull
+    @Email(message = "Email is invalid", regexp = "^[a-zA-Z0-9_!#$%&'*+/=?`{|}~^.-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$")
     private String email;
+
+    @NotNull
+    @Size(min = 2, message = "Minlength of password is 2")
     private String password;
+
+    @NotNull
+    @Size(min = 2, message = "Minlength of fullName is 2")
     private String fullName;
+
+    @NotNull
+    @Size(min = 1, message = "Minlength of address is 1")
     private String address;
+
+    @NotNull
+    @Size(min = 1, message = "Minlength of phone is 1")
     private String phone;
+
     private String avatar;
 
     // Many User => One role
     @ManyToOne
-    @JoinColumn(name="role_id")
+    @JoinColumn(name = "role_id")
     private Role role;
 
     // One User => Many Orders
-    @OneToMany(mappedBy="user")
+    @OneToMany(mappedBy = "user")
     private List<Order> orders;
 
     public Role getRole() {

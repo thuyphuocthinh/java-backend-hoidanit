@@ -1,6 +1,6 @@
-<%@page contentType="text/html" pageEncoding="UTF-8" %> <%@ taglib prefix="c"
-uri="http://java.sun.com/jsp/jstl/core" %> <%@ taglib prefix="form"
-uri="http://www.springframework.org/tags/form" %>
+<%@page contentType="text/html" pageEncoding="UTF-8" %> 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -41,18 +41,25 @@ uri="http://www.springframework.org/tags/form" %>
             <div class="row">
               <div class="col-md-6 col-12">
                 <div class="form-group mb-3">
+                  <c:set var="errorName">
+                    <form:errors path="name" cssClass="invalid-feedback" />
+                  </c:set>
                   <label for="name" class="form-label fw-bold">Name</label>
                   <form:input
                     path="name"
                     type="name"
                     name="name"
                     id="name"
-                    class="form-control"
+                    class="form-control ${not empty errorName ? 'is-invalid' : ''}"
                   />
+                  ${errorName}
                 </div>
               </div>
               <div class="col-md-6 col-12">
                 <div class="form-group mb-3">
+                  <c:set var="errorPrice">
+                    <form:errors path="price" cssClass="invalid-feedback" />
+                  </c:set>
                   <label for="price" class="form-label fw-bold">Price</label>
                   <form:input
                     path="price"
@@ -60,40 +67,52 @@ uri="http://www.springframework.org/tags/form" %>
                     min="0"
                     name="price"
                     id="price"
-                    class="form-control"
+                    class="form-control ${not empty errorPrice ? 'is-invalid' : ''}"
                   />
+                  ${errorPrice}
                 </div>
               </div>
               <div class="col-12">
                 <div class="form-group mb-3">
-                  <label for="longDescription" class="form-label fw-bold"
+                  <c:set var="errorDetailDesc">
+                    <form:errors path="detailDesc" cssClass="invalid-feedback" />
+                  </c:set>
+                  <label for="detailDesc" class="form-label fw-bold"
                     >Detail Description</label
                   >
                   <textarea
-                    class="form-control"
-                    name="longDescription"
-                    id="longDescription"
-                    path="longDescription"
+                    class="form-control ${not empty errorDetailDesc ? 'is-invalid' : ''}"
+                    name="detailDesc"
+                    id="detailDesc"
+                    path="detailDesc"
                     rows="3"
                   ></textarea>
+                  ${errorDetailDesc}
                 </div>
               </div>
               <div class="col-md-6 col-12">
                 <div class="form-group mb-3">
-                  <label for="shortDescription" class="form-label fw-bold"
+                  <c:set var="errorShortDesc">
+                    <form:errors path="shortDesc" cssClass="invalid-feedback" />
+                  </c:set>
+                  <label for="shortDesc" class="form-label fw-bold"
                     >Short Description</label
                   >
                   <form:input
-                    path="shortDescription"
+                    path="shortDesc"
                     type="text"
-                    name="shortDescription"
-                    id="shortDescription"
-                    class="form-control"
+                    name="shortDesc"
+                    id="shortDesc"
+                    class="form-control ${not empty errorShortDesc ? 'is-invalid' : ''}"
                   />
+                  ${errorShortDesc}
                 </div>
               </div>
               <div class="col-md-6 col-12">
                 <div class="form-group mb-3">
+                  <c:set var="errorQuantity">
+                    <form:errors path="quantity" cssClass="invalid-feedback" />
+                  </c:set>
                   <label for="quantity" class="form-label fw-bold"
                     >Quantity</label
                   >
@@ -103,8 +122,9 @@ uri="http://www.springframework.org/tags/form" %>
                     type="number"
                     name="quantity"
                     id="quantity"
-                    class="form-control"
+                    class="form-control ${not empty errorQuantity ? 'is-invalid' : ''}"
                   />
+                  ${errorQuantity}
                 </div>
               </div>
               <div class="col-md-6 col-12">
@@ -113,7 +133,6 @@ uri="http://www.springframework.org/tags/form" %>
                     >Factory</label
                   >
                   <form:select id="factory" class="form-select" path="factory">
-                    <option selected disabled>-- Select Factory --</option>
                     <form:option value="Apple">Apple</form:option>
                     <form:option value="Dell">Dell</form:option>
                     <form:option value="Asus">Asus</form:option>
@@ -125,7 +144,6 @@ uri="http://www.springframework.org/tags/form" %>
                 <div class="form-group mb-3">
                   <label for="target" class="form-label fw-bold">Target</label>
                   <form:select id="target" class="form-select" path="target">
-                    <option selected disabled>-- Select Target --</option>
                     <form:option value="Gaming">Gaming</form:option>
                     <form:option value="Office">Office</form:option>
                     <form:option value="Coding">Coding</form:option>

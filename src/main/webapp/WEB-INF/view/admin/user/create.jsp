@@ -1,6 +1,6 @@
-<%@page contentType="text/html" pageEncoding="UTF-8" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@page contentType="text/html" pageEncoding="UTF-8" %> <%@ taglib prefix="c"
+uri="http://java.sun.com/jsp/jstl/core" %> <%@ taglib prefix="form"
+uri="http://www.springframework.org/tags/form" %>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -41,18 +41,25 @@
             <div class="row">
               <div class="col-md-6 col-12">
                 <div class="form-group mb-3">
+                  <c:set var="errorEmail">
+                    <form:errors path="email" cssClass="invalid-feedback" />
+                  </c:set>
                   <label for="email" class="form-label fw-bold">Email</label>
                   <form:input
                     path="email"
                     type="email"
                     name="email"
                     id="email"
-                    class="form-control"
+                    class="form-control ${not empty errorEmail ? 'is-invalid' : ''}"
                   />
+                  ${errorEmail}
                 </div>
               </div>
               <div class="col-md-6 col-12">
                 <div class="form-group mb-3">
+                  <c:set var="errorPassword">
+                    <form:errors path="password" cssClass="invalid-feedback" />
+                  </c:set>
                   <label for="password" class="form-label fw-bold"
                     >Password</label
                   >
@@ -61,12 +68,16 @@
                     type="password"
                     name="password"
                     id="password"
-                    class="form-control"
+                    class="form-control ${not empty errorPassword ? 'is-invalid' : ''}"
                   />
+                  ${errorPassword}
                 </div>
               </div>
               <div class="col-md-6 col-12">
                 <div class="form-group mb-3">
+                  <c:set var="errorPhoneNumber">
+                    <form:errors path="phone" cssClass="invalid-feedback" />
+                  </c:set>
                   <label for="phone" class="form-label fw-bold"
                     >Phone Number</label
                   >
@@ -75,12 +86,16 @@
                     type="tel"
                     name="phone"
                     id="phone"
-                    class="form-control"
+                    class="form-control ${not empty errorPhoneNumber ? 'is-invalid' : ''}"
                   />
+                  ${errorPhoneNumber}
                 </div>
               </div>
               <div class="col-md-6 col-12">
                 <div class="form-group mb-3">
+                  <c:set var="errorFullName">
+                    <form:errors path="fullName" cssClass="invalid-feedback" />
+                  </c:set>
                   <label for="fullName" class="form-label fw-bold"
                     >Full Name</label
                   >
@@ -89,12 +104,16 @@
                     type="fullName"
                     name="fullName"
                     id="fullName"
-                    class="form-control"
+                    class="form-control ${not empty errorFullName ? 'is-invalid' : ''}"
                   />
+                  ${errorFullName}
                 </div>
               </div>
               <div class="col-md-6 col-12">
                 <div class="form-group mb-3">
+                  <c:set var="errorAddress">
+                    <form:errors path="address" cssClass="invalid-feedback" />
+                  </c:set>
                   <label for="address" class="form-label fw-bold"
                     >Address</label
                   >
@@ -103,15 +122,19 @@
                     type="text"
                     name="address"
                     id="address"
-                    class="form-control"
+                    class="form-control ${not empty errorAddress ? 'is-invalid' : ''}"
                   />
+                  ${errorAddress}
                 </div>
               </div>
               <div class="col-md-6 col-12">
                 <div class="form-group mb-3">
                   <label for="address" class="form-label fw-bold">Role</label>
-                  <form:select class="form-select" path="role.name">
-                    <option selected disabled>-- Select role --</option>
+                  <form:select
+                    class="form-select"
+                    path="role.name"
+                    value="ADMIN"
+                  >
                     <form:option value="ADMIN">Admin</form:option>
                     <form:option value="USER">User</form:option>
                   </form:select>
