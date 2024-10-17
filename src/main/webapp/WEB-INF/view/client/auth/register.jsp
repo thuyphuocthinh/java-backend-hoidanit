@@ -130,7 +130,7 @@ uri="http://www.springframework.org/tags/form" %>
                   </div>
                   <div class="card-footer text-center py-3">
                     <div class="small">
-                      <a href="login.html">Have an account? Go to login</a>
+                      <a href="/login">Have an account? Go to login</a>
                     </div>
                   </div>
                 </div>
