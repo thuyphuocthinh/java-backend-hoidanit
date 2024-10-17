@@ -296,7 +296,7 @@ uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
                     <li>
                       <div class="d-flex justify-content-between fruite-name">
                         <a href="#"
-                          ><i class="fas fa-apple-alt me-2"></i>Oranges</a
+                          ><i class="fas fa-apple-alt me-2"></i>Dell</a
                         >
                         <span>(5)</span>
                       </div>
@@ -304,7 +304,7 @@ uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
                     <li>
                       <div class="d-flex justify-content-between fruite-name">
                         <a href="#"
-                          ><i class="fas fa-apple-alt me-2"></i>Strawbery</a
+                          ><i class="fas fa-apple-alt me-2"></i>Acer</a
                         >
                         <span>(2)</span>
                       </div>
@@ -312,7 +312,7 @@ uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
                     <li>
                       <div class="d-flex justify-content-between fruite-name">
                         <a href="#"
-                          ><i class="fas fa-apple-alt me-2"></i>Banana</a
+                          ><i class="fas fa-apple-alt me-2"></i>Asus</a
                         >
                         <span>(8)</span>
                       </div>
@@ -320,7 +320,7 @@ uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
                     <li>
                       <div class="d-flex justify-content-between fruite-name">
                         <a href="#"
-                          ><i class="fas fa-apple-alt me-2"></i>Pumpkin</a
+                          ><i class="fas fa-apple-alt me-2"></i>Lenovo</a
                         >
                         <span>(5)</span>
                       </div>

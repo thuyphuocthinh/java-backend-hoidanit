@@ -12,7 +12,7 @@ import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Size;
+import vn.hoidanit.laptopshop.service.validator.StrongPassword;
 
 @Entity
 @Table(name = "users")
@@ -26,19 +26,13 @@ public class User {
     private String email;
 
     @NotNull
-    @Size(min = 2, message = "Minlength of password is 2")
+    @StrongPassword
     private String password;
 
-    @NotNull
-    @Size(min = 2, message = "Minlength of fullName is 2")
     private String fullName;
 
-    @NotNull
-    @Size(min = 1, message = "Minlength of address is 1")
     private String address;
 
-    @NotNull
-    @Size(min = 1, message = "Minlength of phone is 1")
     private String phone;
 
     private String avatar;
