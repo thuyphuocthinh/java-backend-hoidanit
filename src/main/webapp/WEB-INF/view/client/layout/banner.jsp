@@ -3,9 +3,9 @@
   <div class="container py-5">
     <div class="row g-5 align-items-center">
       <div class="col-md-12 col-lg-7">
-        <h4 class="mb-3 text-secondary">100% Organic Foods</h4>
+        <h4 class="mb-3 text-secondary">Laptop</h4>
         <h1 class="mb-5 display-3 text-primary">
-          Organic Veggies & Fruits Foods
+          Office & Gaming
         </h1>
         <div class="position-relative mx-auto">
           <input
@@ -31,20 +31,20 @@
           <div class="carousel-inner" role="listbox">
             <div class="carousel-item active rounded">
               <img
-                src="/client/img/hero-img-1.png"
+                src="/client/img/laptop-banner-01.jpg"
                 class="img-fluid w-100 h-100 bg-secondary rounded"
                 alt="First slide"
               />
-              <a href="#" class="btn px-4 py-2 text-white rounded">Fruites</a>
+              <a href="#" class="btn px-4 py-2 text-white rounded">Gaming</a>
             </div>
             <div class="carousel-item rounded">
               <img
-                src="/client/img/hero-img-2.jpg"
+                src="/client/img/laptop-banner-02.jpg"
                 class="img-fluid w-100 h-100 rounded"
                 alt="Second slide"
               />
               <a href="#" class="btn px-4 py-2 text-white rounded"
-                >Vesitables</a
+                >Office</a
               >
             </div>
           </div>

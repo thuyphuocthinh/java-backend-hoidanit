@@ -81,7 +81,7 @@ public class UserController {
     @GetMapping(value = "/admin/user/delete/{id}")
     public String deleteUserById(Model model, @PathVariable long id) {
         this.userService.deleteUserByid(id);
-        return "redirect:/";
+        return "redirect:/admin/user";
     }
 
     @GetMapping(value = "/admin/user/edit/{id}")
@@ -100,7 +100,7 @@ public class UserController {
             currentUser.setFullName(user.getFullName());
             currentUser.setPhone(user.getPhone());
             this.userService.handleSaveUser(currentUser);
-            return "redirect:/";
+            return "redirect:/admin/user";
         }
         return "redirect:/error";
     }

@@ -34,8 +34,8 @@
           <form:form
             class="my-4"
             method="POST"
-            action="/admin/product/post"
-            modelAttribute="newProduct"
+            action="/admin/product/edit"
+            modelAttribute="product"
             enctype="multipart/form-data"
           >
             <div class="row">
@@ -86,7 +86,7 @@
                     id="detailDesc"
                     path="detailDesc"
                     rows="3"
-                  ></textarea>
+                  >${product.detailDesc}</textarea>
                   ${errorDetailDesc}
                 </div>
               </div>
@@ -163,10 +163,10 @@
                 </div>
               </div>
               <div class="col-12 mb-3">
-                <img id="imgPreview" style="width: 100%" />
+                <img id="imgPreview" style="width: 100%" src="/images/product/${product.image}"/>
               </div>
               <div class="form-group">
-                <button class="btn btn-primary" type="submit">Create</button>
+                <button class="btn btn-primary" type="submit">Update</button>
               </div>
             </div>
           </form:form>

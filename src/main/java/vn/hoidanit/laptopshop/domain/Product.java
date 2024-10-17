@@ -2,6 +2,7 @@ package vn.hoidanit.laptopshop.domain;
 
 import java.util.List;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -27,11 +28,11 @@ public class Product {
     @Min(value = 0, message = "Price must be equal or greater than 0")
     private double price;
 
-    @NotNull(message = "Product image cannot be empty")
     private String image;
 
     @NotNull(message = "Product detail description cannot be empty")
     @Size(min = 30, message = "Product detail description must be equal or greater than 30")
+    @Column(columnDefinition="MEDIUMTEXT")
     private String detailDesc;
 
     @NotNull(message = "Product short description cannot be empty")

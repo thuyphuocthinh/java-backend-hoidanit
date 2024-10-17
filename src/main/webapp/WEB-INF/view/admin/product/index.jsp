@@ -40,31 +40,32 @@ uri="http://java.sun.com/jsp/jstl/core"%>
                   <th>ID</th>
                   <th>Name</th>
                   <th>Price</th>
+                  <th>Quantity</th>
                   <th>Factory</th>
                   <th>Actions</th>
                 </tr>
               </thead>
               <tbody>
-                <!-- <c:forEach var="user" items="${listUsers}">
+                <c:forEach var="product" items="${listProducts}">
                   <tr>
-                    <td>${user.id}</td>
-                    <td>${user.fullName}</td>
-                    <td>${user.email}</td>
-                    <td>${user.phone}</td>
-                    <td>${user.address}</td>
+                    <td>${product.id}</td>
+                    <td>${product.name}</td>
+                    <td>${product.price}</td>
+                    <td>${product.quantity}</td>
+                    <td>${product.factory}</td>
                     <td>
-                      <a href="/user/view/${user.id}" class="btn btn-success"
+                      <a href="/admin/product/view/${product.id}" class="btn btn-success"
                         >View</a
                       >
-                      <a href="/user/edit/${user.id}" class="btn btn-warning"
+                      <a href="/admin/product/edit/${product.id}" class="btn btn-warning"
                         >Edit</a
                       >
-                      <a href="/user/delete/${user.id}" class="btn btn-danger"
+                      <a href="/admin/product/delete/${product.id}" class="btn btn-danger"
                         >Delete</a
                       >
                     </td>
                   </tr>
-                </c:forEach> -->
+                </c:forEach>
               </tbody>
             </table>
           </div>
