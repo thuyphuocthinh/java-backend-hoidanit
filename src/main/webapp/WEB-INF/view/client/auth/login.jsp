@@ -12,7 +12,7 @@ uri="http://www.springframework.org/tags/form" %>
     />
     <meta name="description" content="" />
     <meta name="author" content="" />
-    <title>Register - SB Admin</title>
+    <title>Login</title>
     <link href="css/styles.css" rel="stylesheet" />
     <script
       src="https://use.fontawesome.com/releases/v6.3.0/js/all.js"
@@ -28,53 +28,48 @@ uri="http://www.springframework.org/tags/form" %>
               <div class="col-lg-7">
                 <div class="card shadow-lg border-0 rounded-lg mt-5">
                   <div class="card-header">
-                    <h3 class="text-center font-weight-light my-4">
-                      Login
-                    </h3>
+                    <h3 class="text-center font-weight-light my-4">Login</h3>
                   </div>
                   <div class="card-body">
-                    <form:form
-                      method="POST"
-                      action="/login"
-                      modelAttribute="loginUser"
-                    >
-                      <div class="form-floating mb-3">
-                        <c:set var="errorEmail">
-                          <form:errors
-                            path="email"
-                            cssClass="invalid-feedback"
-                          />
-                        </c:set>
-                        <form:input
-                          class="form-control ${not empty errorEmail ? 'is-invalid' : ''}"
-                          id="inputEmail"
-                          type="email"
-                          path="email"
-                          placeholder="name@example.com"
-                        />
-                        <label for="inputEmail">Email address</label>
-                        ${errorEmail}
-                      </div>
+                    <form method="POST" action="/login">
                       <div class="row mb-3">
-                        <div class="col-md-6">
-                          <div class="form-floating mb-3 mb-md-0">
-                            <c:set var="errorPassword">
-                              <form:errors
-                                path="password"
-                                cssClass="invalid-feedback"
-                              />
-                            </c:set>
-                            <form:input
-                              class="form-control ${not empty errorPassword ? 'is-invalid' : ''}"
-                              id="password"
-                              type="password"
-                              path="password"
-                              placeholder="Password"
+                        <div class="col-12">
+                          <div class="form-floating mb-3">
+                            <input
+                              class="form-control"
+                              id="inputEmail"
+                              type="email"
+                              name="username"
+                              placeholder="name@example.com"
                             />
-                            <label for="inputPasswordConfirm">Password</label>
-                            ${errorPassword}
+                            <label for="inputEmail">Email address</label>
                           </div>
                         </div>
+                      </div>
+                      <div class="row mb-3">
+                        <div class="col-12">
+                          <div class="form-floating mb-3 mb-md-0">
+                            <input
+                              class="form-control"
+                              id="password"
+                              type="password"
+                              placeholder="Password"
+                            />
+                            <label for="password">Password</label>
+                          </div>
+                        </div>
+                      </div>
+                      <c:if test="${param.error != null}">
+                        <div class="my-2" style="color: red">
+                          Invalid email or password.
+                        </div>
+                      </c:if>
+                      <div>
+                        <input
+                          type="hidden"
+                          name="${_csrf.parameterName}"
+                          value="${_csrf.token}"
+                        />
                       </div>
                       <div class="mt-4 mb-0">
                         <div class="d-grid">
@@ -86,7 +81,7 @@ uri="http://www.springframework.org/tags/form" %>
                           </button>
                         </div>
                       </div>
-                    </form:form>
+                    </form>
                   </div>
                   <div class="card-footer text-center py-3">
                     <div class="small">

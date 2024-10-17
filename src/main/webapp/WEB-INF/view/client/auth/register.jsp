@@ -41,26 +41,40 @@ uri="http://www.springframework.org/tags/form" %>
                       <div class="row mb-3">
                         <div class="col-md-6">
                           <div class="form-floating mb-3 mb-md-0">
+                            <c:set var="errorFirstName">
+                              <form:errors
+                                path="firstName"
+                                cssClass="invalid-feedback"
+                              />
+                            </c:set>
                             <form:input
-                              class="form-control"
+                              class="form-control ${not empty errorFirstName ? 'is-invalid' : ''}"
                               id="inputFirstName"
                               path="firstName"
                               type="text"
                               placeholder="Enter your first name"
                             />
                             <label for="inputFirstName">First name</label>
+                            ${errorFirstName}
                           </div>
                         </div>
                         <div class="col-md-6">
                           <div class="form-floating">
+                            <c:set var="errorLastName">
+                              <form:errors
+                                path="lastName"
+                                cssClass="invalid-feedback"
+                              />
+                            </c:set>
                             <form:input
-                              class="form-control"
+                              class="form-control ${not empty errorLastName ? 'is-invalid' : ''}"
                               id="inputLastName"
                               type="text"
                               path="lastName"
                               placeholder="Enter your last name"
                             />
                             <label for="inputLastName">Last name</label>
+                            ${errorLastName}
                           </div>
                         </div>
                       </div>
@@ -84,14 +98,21 @@ uri="http://www.springframework.org/tags/form" %>
                       <div class="row mb-3">
                         <div class="col-md-6">
                           <div class="form-floating mb-3 mb-md-0">
+                            <c:set var="errorPassword">
+                              <form:errors
+                                path="password"
+                                cssClass="invalid-feedback"
+                              />
+                            </c:set>
                             <form:input
-                              class="form-control"
+                              class="form-control ${not empty errorPassword ? 'is-invalid' : ''}"
                               id="inputPassword"
                               type="password"
                               path="password"
                               placeholder="Create a password"
                             />
                             <label for="inputPassword">Password</label>
+                            ${errorPassword}
                           </div>
                         </div>
                         <div class="col-md-6">

@@ -38,13 +38,13 @@ public class UserController {
         List<User> listUsers = this.userService.getAllUsers();
         model.addAttribute("TPT", "Thuy Phuoc Thinh");
         model.addAttribute("listUsers", listUsers);
-        return "/admin/user/index";
+        return "admin/user/index";
     }
 
     @GetMapping("/admin/user/create")
     public String getCreatePage(Model model) {
         model.addAttribute("newUser", new User());
-        return "/admin/user/create";
+        return "admin/user/create";
     }
 
     @PostMapping(value = "/admin/user/post")
@@ -58,7 +58,7 @@ public class UserController {
             for(FieldError error : errors) {
                 System.out.println(error.getField() + " - " + error.getDefaultMessage() + " - " + error.getRejectedValue());
             }
-            return "/admin/user/create";
+            return "admin/user/create";
         }
         // upload, hash
         String avatar = uploadService.handleSaveFileUpload(file, "avatar");
@@ -75,7 +75,7 @@ public class UserController {
     public String getUserById(Model model, @PathVariable long id) {
         User user = this.userService.getUserById(id);
         model.addAttribute("userName", user.getFullName());
-        return "/admin/user/detail";
+        return "admin/user/detail";
     }
 
     @GetMapping(value = "/admin/user/delete/{id}")
@@ -89,7 +89,7 @@ public class UserController {
         User user = this.userService.getUserById(id);
         System.out.println("user " + user);
         model.addAttribute("user", user);
-        return "/admin/user/edit";
+        return "admin/user/edit";
     }
 
     @PostMapping(value = "/admin/user/edit")

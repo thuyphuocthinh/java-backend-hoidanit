@@ -32,13 +32,13 @@ public class ProductController {
     public String getProductPage(Model model) {
         List<Product> products = this.productService.getAllProducts();
         model.addAttribute("listProducts", products);
-        return "/admin/product/index";
+        return "admin/product/index";
     }
 
     @GetMapping(value = "/admin/product/create")
     public String getProductCreate(Model model) {
         model.addAttribute("newProduct", new Product());
-        return "/admin/product/create";
+        return "admin/product/create";
     }
 
     @PostMapping(value = "/admin/product/post")
@@ -53,7 +53,7 @@ public class ProductController {
                 System.out.println(
                         error.getField() + " - " + error.getDefaultMessage() + " - " + error.getRejectedValue());
             }
-            return "/admin/product/create";
+            return "admin/product/create";
         }
         // upload
         String image = uploadService.handleSaveFileUpload(file, "product");
@@ -72,7 +72,7 @@ public class ProductController {
     public String getProductEditPage(Model model, @PathVariable long id) {
         Product product = this.productService.getProductById(id);
         model.addAttribute("product", product);
-        return "/admin/product/edit";
+        return "admin/product/edit";
     }
 
     @PostMapping(value = "/admin/product/edit")
@@ -81,7 +81,7 @@ public class ProductController {
             BindingResult bindingResult,
             @RequestParam("imageFile") MultipartFile file) {
         if (bindingResult.hasErrors()) {
-            return "/admin/product/edit";
+            return "admin/product/edit";
         }
         Product currentProduct = this.productService.getProductById(product.getId());
         if (currentProduct != null) {
@@ -108,7 +108,7 @@ public class ProductController {
     public String getDetailPage(Model model, @PathVariable long id) {
         Product currentProduct = this.productService.getProductById(id);
         model.addAttribute("product", currentProduct);
-        return "/admin/product/detail";
+        return "admin/product/detail";
     }
 
 }

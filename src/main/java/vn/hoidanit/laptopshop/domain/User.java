@@ -12,6 +12,7 @@ import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 import vn.hoidanit.laptopshop.service.validator.StrongPassword;
 
 @Entity
@@ -29,6 +30,8 @@ public class User {
     @StrongPassword
     private String password;
 
+    @NotNull
+    @Size(min = 2, message = "Minlength of fullName is 2")
     private String fullName;
 
     private String address;
