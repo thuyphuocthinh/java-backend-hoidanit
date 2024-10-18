@@ -1,3 +1,6 @@
+<%@page contentType="text/html" pageEncoding="UTF-8" %> <%@ taglib prefix="c"
+uri="http://java.sun.com/jsp/jstl/core" %> <%@ taglib prefix="form"
+uri="http://www.springframework.org/tags/form" %>
 <!-- Navbar start -->
 <div class="container-fluid fixed-top">
   <div class="container topbar bg-primary d-none d-lg-block">
@@ -38,31 +41,80 @@
       >
         <span class="fa fa-bars text-primary"></span>
       </button>
-      <div class="collapse navbar-collapse bg-white" id="navbarCollapse">
-        <div class="navbar-nav mx-auto">
-          <a href="/" class="nav-item nav-link active">Home</a>
-          <a href="shop.html" class="nav-item nav-link">Product</a>
-        </div>
-        <div class="d-flex m-3 me-0">
-          <button
-            class="btn-search btn border border-secondary btn-md-square rounded-circle bg-white me-4"
-            data-bs-toggle="modal"
-            data-bs-target="#searchModal"
-          >
-            <i class="fas fa-search text-primary"></i>
-          </button>
-          <a href="#" class="position-relative me-4 my-auto">
-            <i class="fa fa-shopping-bag fa-2x"></i>
-            <span
-              class="position-absolute bg-secondary rounded-circle d-flex align-items-center justify-content-center text-dark px-1"
-              style="top: -5px; left: 15px; height: 20px; min-width: 20px"
-              >3</span
-            >
-          </a>
-          <a href="/register" class="my-auto">
-            <i class="fas fa-user fa-2x"></i>
-          </a>
-        </div>
+      <div
+        class="collapse navbar-collapse bg-white d-md-flex justify-content-between align-items-center"
+        id="navbarCollapse"
+      >
+        <c:if test="${not empty pageContext.request.userPrincipal}">
+          <div class="navbar-nav">
+            <a href="/" class="nav-item nav-link active">Home</a>
+            <a href="shop.html" class="nav-item nav-link">Product</a>
+          </div>
+          <div class="d-flex m-3 me-0">
+            <a href="#" class="position-relative me-4 my-auto">
+              <i class="fa fa-shopping-bag fa-2x"></i>
+              <span
+                class="position-absolute bg-secondary rounded-circle d-flex align-items-center justify-content-center text-dark px-1"
+                style="top: -5px; left: 15px; height: 20px; min-width: 20px"
+                >3</span
+              >
+            </a>
+            <div class="dropdown my-auto">
+              <a
+                href="#"
+                class="dropdown"
+                role="button"
+                id="dropdownMenuLink"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                <i class="fas fa-user fa-2x"></i>
+              </a>
+              <ul
+                class="dropdown-menu dropdown-menu-end p-4"
+                arialabelledby="dropdownMenuLink"
+              >
+                <li
+                  class="d-flex align-items-center flex-column"
+                  style="min-width: 300px"
+                >
+                  <img
+                    style="
+                      width: 150px;
+                      height: 150px;
+                      border-radius: 50%;
+                      overflow: hidden;
+                    "
+                    src="/images/product/1711078092373-asus-01.png"
+                  />
+                  <div class="text-center my-3">
+                    <c:out value="${pageContext.request.userPrincipal.name}" />
+                  </div>
+                </li>
+                <li><a class="dropdown-item" href="/profile">Profile</a></li>
+                <li><a class="dropdown-item" href="/history">History</a></li>
+                <li>
+                  <hr class="dropdown-divider" />
+                </li>
+                <li>
+                  <form method="POST" action="/logout">
+                    <input
+                      type="hidden"
+                      name="${_csrf.parameterName}"
+                      value="${_csrf.token}"
+                    />
+                    <button class="dropdown-item">Logout</button>
+                  </form>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </c:if>
+        <c:if test="${empty pageContext.request.userPrincipal}">
+          <a href="/login" class="d-block ms-auto">Login</a>
+        </c:if>
       </div>
     </nav>
   </div>

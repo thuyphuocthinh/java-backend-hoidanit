@@ -32,6 +32,11 @@ uri="http://www.springframework.org/tags/form" %>
                   </div>
                   <div class="card-body">
                     <form method="POST" action="/login">
+                      <c:if test="${param.logout != null}">
+                        <div class="my-2" style="color: green">
+                          Logout succcess
+                        </div>
+                      </c:if>
                       <div class="row mb-3">
                         <div class="col-12">
                           <div class="form-floating mb-3">

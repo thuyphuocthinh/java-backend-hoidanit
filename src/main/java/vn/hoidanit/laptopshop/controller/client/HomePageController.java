@@ -74,6 +74,11 @@ public class HomePageController {
     public String handleLogin() {
         return "client/auth/login";
     }
+
+    @GetMapping("/access-deny")
+    public String getDenyPage() {
+        return "client/auth/deny";
+    }
 }
 
 // DTO => data transfer object
