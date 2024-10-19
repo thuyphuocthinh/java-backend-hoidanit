@@ -70,10 +70,10 @@ public class HomePageController {
         return "client/auth/login";
     }
 
-    @PostMapping("/login")
-    public String handleLogin() {
-        return "client/auth/login";
-    }
+    // @PostMapping("/login")
+    // public String handleLogin() {
+    //     return "client/auth/login";
+    // }
 
     @GetMapping("/access-deny")
     public String getDenyPage() {

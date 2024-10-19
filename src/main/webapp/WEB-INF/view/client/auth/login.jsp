@@ -58,6 +58,7 @@ uri="http://www.springframework.org/tags/form" %>
                               class="form-control"
                               id="password"
                               type="password"
+                              name="password"
                               placeholder="Password"
                             />
                             <label for="password">Password</label>
@@ -65,9 +66,7 @@ uri="http://www.springframework.org/tags/form" %>
                         </div>
                       </div>
                       <c:if test="${param.error != null}">
-                        <div class="my-2" style="color: red">
-                          Invalid email or password.
-                        </div>
+                        <div style="color: red">Invalid email or password.</div>
                       </c:if>
                       <div>
                         <input
