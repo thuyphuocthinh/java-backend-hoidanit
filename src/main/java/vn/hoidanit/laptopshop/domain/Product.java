@@ -14,7 +14,7 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
 @Entity
-@Table(name="products")
+@Table(name = "products")
 public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -32,7 +32,7 @@ public class Product {
 
     @NotNull(message = "Product detail description cannot be empty")
     @Size(min = 30, message = "Product detail description must be equal or greater than 30")
-    @Column(columnDefinition="MEDIUMTEXT")
+    @Column(columnDefinition = "MEDIUMTEXT")
     private String detailDesc;
 
     @NotNull(message = "Product short description cannot be empty")
@@ -52,8 +52,11 @@ public class Product {
     private String target;
 
     // One product => Many order_detail
-    @OneToMany(mappedBy="product")
+    @OneToMany(mappedBy = "product")
     private List<OrderDetail> orderDetails;
+
+    @OneToMany(mappedBy = "product")
+    private List<CartDetail> cartDetails;
 
     public long getId() {
         return id;

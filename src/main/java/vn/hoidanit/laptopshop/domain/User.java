@@ -9,6 +9,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotNull;
@@ -48,6 +49,9 @@ public class User {
     // One User => Many Orders
     @OneToMany(mappedBy = "user")
     private List<Order> orders;
+
+    @OneToOne(mappedBy = "user")
+    private Cart cart;
 
     public Role getRole() {
         return role;
