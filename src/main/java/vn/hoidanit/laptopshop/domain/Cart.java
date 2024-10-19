@@ -36,4 +36,29 @@ public class Cart {
     public void setId(long id) {
         this.id = id;
     }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public List<CartDetail> getCartDetails() {
+        return cartDetails;
+    }
+
+    public void setCartDetails(List<CartDetail> cartDetails) {
+        this.cartDetails = cartDetails;
+    }
+
+    public int getSum() {
+        return sum;
+    }
+
+    public void setSum(int l) {
+        this.sum = l;
+    }
+
 }

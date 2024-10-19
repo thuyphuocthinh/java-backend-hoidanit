@@ -144,14 +144,24 @@ uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
                                 />
                                 đ
                               </p>
-                              <a
-                                href="#"
-                                class="btn border border-secondary rounded-pill px-3 text-primary"
-                                ><i
-                                  class="fa fa-shopping-bag me-2 text-primary"
-                                ></i>
-                                Add to cart</a
+                              <form
+                                method="POST"
+                                action="/add-product-to-cart/${product.id}"
                               >
+                                <input
+                                  type="hidden"
+                                  name="${_csrf.parameterName}"
+                                  value="${_csrf.token}"
+                                />
+                                <button
+                                  class="btn border border-secondary rounded-pill px-3 text-primary"
+                                >
+                                  <i
+                                    class="fa fa-shopping-bag me-2 text-primary"
+                                  ></i>
+                                  Add to cart
+                                </button>
+                              </form>
                             </div>
                           </div>
                         </div>

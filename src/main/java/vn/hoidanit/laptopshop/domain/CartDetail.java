@@ -17,7 +17,7 @@ public class CartDetail {
     private long id;
 
     @Min(value = 0)
-    private long quantity;
+    private int quantity;
 
     @Min(value = 0)
     private double price;
@@ -38,11 +38,11 @@ public class CartDetail {
         this.id = id;
     }
 
-    public long getQuantity() {
+    public int getQuantity() {
         return quantity;
     }
 
-    public void setQuantity(long quantity) {
+    public void setQuantity(int quantity) {
         this.quantity = quantity;
     }
 
@@ -52,6 +52,22 @@ public class CartDetail {
 
     public void setPrice(double price) {
         this.price = price;
+    }
+
+    public Cart getCart() {
+        return cart;
+    }
+
+    public void setCart(Cart cart) {
+        this.cart = cart;
+    }
+
+    public Product getProduct() {
+        return product;
+    }
+
+    public void setProduct(Product product) {
+        this.product = product;
     }
 
 }

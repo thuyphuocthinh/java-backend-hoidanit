@@ -139,4 +139,12 @@ public class User {
         sb.append('}');
         return sb.toString();
     }
+
+    public Cart getCart() {
+        return cart;
+    }
+
+    public void setCart(Cart cart) {
+        this.cart = cart;
+    }
 }
