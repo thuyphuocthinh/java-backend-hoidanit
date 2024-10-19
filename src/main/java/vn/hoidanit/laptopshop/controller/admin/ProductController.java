@@ -1,7 +1,11 @@
 package vn.hoidanit.laptopshop.controller.admin;
 
 import java.util.List;
+import java.util.Optional;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -29,9 +33,27 @@ public class ProductController {
     }
 
     @GetMapping(value = "/admin/product")
-    public String getProductPage(Model model) {
-        List<Product> products = this.productService.getAllProducts();
-        model.addAttribute("listProducts", products);
+    public String getProductPage(Model model, @RequestParam("page") Optional<String> pageOptional) {
+        // offset = (page - 1) * limit;
+        // totalPage = roundUp(totalRecords / limit)
+        // spring auto-calculates offset, totalPage..
+        int page = 1;
+        try {
+            if(pageOptional.isPresent()) {
+                page = Integer.parseInt(pageOptional.get());
+            } else {
+                // page = 1;
+            }
+        } catch (Exception e) {
+            // Handle error here
+            // page = 1
+        }
+        Pageable pageable = PageRequest.of(page - 1, 2);
+        Page<Product> products = this.productService.getAllProducts(pageable);
+        List<Product> listProducts = products.getContent();
+        model.addAttribute("listProducts", listProducts);
+        model.addAttribute("currentPage", page);
+        model.addAttribute("totalPage", products.getTotalPages());
         return "admin/product/index";
     }
 
@@ -92,7 +114,7 @@ public class ProductController {
             currentProduct.setName(product.getName());
             currentProduct.setPrice(product.getPrice());
             currentProduct.setQuantity(product.getQuantity());
-            if(!file.isEmpty()) {
+            if (!file.isEmpty()) {
                 String image = uploadService.handleSaveFileUpload(file, "product");
                 currentProduct.setImage(image);
             } else {

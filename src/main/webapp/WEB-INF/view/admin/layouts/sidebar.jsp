@@ -23,7 +23,7 @@
               </div>
               User
             </a>
-            <a class="nav-link" href="/admin/product">
+            <a class="nav-link" href="/admin/product?page=1">
               <div class="sb-nav-link-icon">
                 <i class="fas fa-tachometer-alt"></i>
               </div>

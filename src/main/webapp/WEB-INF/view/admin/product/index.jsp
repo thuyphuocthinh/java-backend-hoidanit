@@ -54,13 +54,19 @@ uri="http://java.sun.com/jsp/jstl/core"%>
                     <td>${product.quantity}</td>
                     <td>${product.factory}</td>
                     <td>
-                      <a href="/admin/product/view/${product.id}" class="btn btn-success"
+                      <a
+                        href="/admin/product/view/${product.id}"
+                        class="btn btn-success"
                         >View</a
                       >
-                      <a href="/admin/product/edit/${product.id}" class="btn btn-warning"
+                      <a
+                        href="/admin/product/edit/${product.id}"
+                        class="btn btn-warning"
                         >Edit</a
                       >
-                      <a href="/admin/product/delete/${product.id}" class="btn btn-danger"
+                      <a
+                        href="/admin/product/delete/${product.id}"
+                        class="btn btn-danger"
                         >Delete</a
                       >
                     </td>
@@ -69,6 +75,39 @@ uri="http://java.sun.com/jsp/jstl/core"%>
               </tbody>
             </table>
           </div>
+          <nav aria-label="Page navigation">
+            <ul class="pagination">
+              <li class="page-item ${currentPage == 1 ? 'disabled' : ''}">
+                <a
+                  class="page-link"
+                  href="/admin/product?page=${currentPage-1}"
+                  aria-label="Previous"
+                >
+                  <span aria-hidden="true">&laquo;</span>
+                  <span class="sr-only">Previous</span>
+                </a>
+              </li>
+              <c:forEach begin="1" end="${totalPage}" varStatus="loop">
+                <li
+                  class="page-item ${currentPage == loop.index ? 'active' : ''}"
+                >
+                  <a class="page-link" href="/admin/product?page=${loop.index}">
+                    ${loop.index}
+                  </a>
+                </li>
+              </c:forEach>
+              <li class="page-item">
+                <a
+                  class="page-link ${currentPage == totalPage ? 'disabled' : ''}"
+                  href="/admin/product?page=${currentPage+1}"
+                  aria-label="Next"
+                >
+                  <span aria-hidden="true">&raquo;</span>
+                  <span class="sr-only">Next</span>
+                </a>
+              </li>
+            </ul>
+          </nav>
         </div>
         <jsp:include page="../layouts/footer.jsp" />
       </div>
