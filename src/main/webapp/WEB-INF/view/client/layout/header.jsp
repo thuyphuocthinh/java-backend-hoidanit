@@ -48,7 +48,7 @@ uri="http://www.springframework.org/tags/form" %>
         <c:if test="${not empty pageContext.request.userPrincipal}">
           <div class="navbar-nav">
             <a href="/" class="nav-item nav-link active">Home</a>
-            <a href="shop.html" class="nav-item nav-link">Product</a>
+            <a href="/products" class="nav-item nav-link">Product</a>
           </div>
           <div class="d-flex m-3 me-0">
             <a href="/cart-detail" class="position-relative me-4 my-auto">
