@@ -87,10 +87,10 @@ uri="http://www.springframework.org/tags/form" %>
                       border-radius: 50%;
                       overflow: hidden;
                     "
-                    src="/images/product/1711078092373-asus-01.png"
+                    src="/images/product/${sessionScope.avatar}"
                   />
                   <div class="text-center my-3">
-                    <c:out value="${pageContext.request.userPrincipal.name}" />
+                    <c:out value="${sessionScope.fullName}" />
                   </div>
                 </li>
                 <li><a class="dropdown-item" href="/profile">Profile</a></li>
